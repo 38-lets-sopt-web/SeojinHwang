@@ -260,13 +260,16 @@ div.content {
     padding-bottom: 15px;
 }
 
-.good {
-    background-color: var(--color-good);
+.btn {
     color: var(--color-white);
     padding: 12px 24px;
     border-radius: var(--radius-lg);
     border: none;
     transition: 0.3s;
+}
+
+.good {
+    background-color: var(--color-good);    
 }
 
 .good:hover {
@@ -275,11 +278,6 @@ div.content {
 
 .bad {
     background-color: var(--color-bad);
-    color: var(--color-white);
-    padding: 12px 24px;
-    border-radius: var(--radius-lg);
-    border: none;
-    transition: 0.3s;
 }
 
 .bad:hover {
