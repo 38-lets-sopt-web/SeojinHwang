@@ -108,11 +108,11 @@ li a {
     transition: 0.3s;
 }
 
-li a.top {
+li:first-child a{
     border-radius: 20px 20px 5px 5px;
 }
 
-li a.bottom {
+li:last-child a {
     border-radius: 5px 5px 20px 20px;
 }
 
