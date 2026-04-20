@@ -8,7 +8,7 @@ body {
     background-color: #fdf5cc;
 }
 
-header.main {
+header {
     display: flex;
     position: fixed;
     top: 0;
@@ -18,30 +18,30 @@ header.main {
     background-color: #f5e68d;
 }
 
-header.main > div {
+header > div {
     width: 33.33%;
 }
 
-header.main .left {
+header .left {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding-left: 20px;
 }
 
-header.main .center {
+header .center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-header.main .center h4,
-header.main .center h6 {
+header .center h4,
+header .center h6 {
     margin: 0;
 }
 
-header.main .right {
+header .right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
