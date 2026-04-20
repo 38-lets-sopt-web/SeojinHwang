@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--color-bg);
 }
@@ -126,6 +130,7 @@ div.content {
 }
 
 .sect {
+    scroll-margin-top: 90px;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -251,7 +256,7 @@ div.content {
     background-color: var(--color-white);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .letter p {
