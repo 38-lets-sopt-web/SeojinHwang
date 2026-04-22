@@ -1,0 +1,19 @@
+:root {
+    --color-background: #dadada;
+    --color-header: #121c25;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-table: #eef2f6;
+    --color-modal-text: #6f7f96;
+    
+    --input-border: 0.1rem solid #cfd6df;
+    --table-border: 0.1rem solid #e5e7eb;
+    --table-total-border: 0.2rem solid #d1d5db;
+
+    --border-radius: 1.2rem;
+    --border-radius-sm: 0.7rem;
+
+    --font-size-sm: 1.4rem;
+    --font-size-md: 1.6rem;
+    --font-size-lg: 2rem;
+}

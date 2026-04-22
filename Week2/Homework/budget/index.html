@@ -3,6 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/reset.css" />
+        <link rel="stylesheet" href="styles/theme.css" />
+        <link rel="stylesheet" href="styles/layout.css" />
+        <link rel="stylesheet" href="styles/table.css" />
+        <link rel="stylesheet" href="styles/modal.css" />
+
         <title>가계부</title>
     </head>
     <body>
@@ -105,12 +111,12 @@
             <div class="modal-backdrop"></div>
 
             <section class="modal-content-add">
-                <header class="modal-header">
+                <div class="modal-header">
                     <h2>내역 추가</h2>
                     <button type="button" class="modal-close-btn" id="add-modal-close" aria-label="닫기">
                         x
                     </button>
-                </header>
+                </div>
 
                 <form class="modal-form" id="add-form">
                     <div class="modal-field full">
@@ -172,12 +178,12 @@
             <div class="modal-backdrop"></div>
 
             <section class="modal-content-detail">
-                <header class="modal-header">
+                <div class="modal-header">
                     <h2>항목 상세</h2>
                     <button type="button" class="modal-close-btn" id="detail-modal-close" aria-label="닫기">
                         x
                     </button>
-                </header>
+                </div>
 
                 <dl class="detail-list">
                     <div class="detail-row">
