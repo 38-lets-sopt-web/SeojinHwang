@@ -4,12 +4,12 @@ const STORAGE_KEY = "expense";
 
 if (!localStorage.getItem(STORAGE_KEY)) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
-}
+};
 
 function getExpense() {
     const data = localStorage.getItem(STORAGE_KEY);
     return data ? JSON.parse(data) : [];
-}
+};
 
 //테이블
 const tableBody = document.getElementById("table-body");
@@ -18,7 +18,7 @@ const totalAmount = document.getElementById("total-amount");
 function formatAmount(amount) {
     const sign = amount > 0 ? "+" : "";
     return `${sign}${amount.toLocaleString()}`;
-}
+};
 
 function renderTable(data) {
     tableBody.innerHTML = "";
@@ -39,7 +39,7 @@ function renderTable(data) {
         const amountColor = item.amount > 0 ? "income" : "expense";
         row += `
         <tr>
-            <td><input type="checkbox" class="each-check"/></td>
+            <td><input type="checkbox" class="each-check" data-id="${item.id}"/></td>
             <td>${item.title}</td>
             <td class="${amountColor}">${formatAmount(item.amount)}</td>
             <td>${item.date}</td>
@@ -53,7 +53,7 @@ function renderTable(data) {
     const total = data.reduce((sum, item) => sum + item.amount, 0);
     totalAmount.textContent = formatAmount(total);
     totalAmount.className = total > 0 ? "income" : "expense";
-}
+};
 
 //필터
 const titleFilter = document.getElementById("title-filter");
@@ -77,7 +77,7 @@ function filterData(data) {
     });
 
     return filters;
-}
+};
 
 const filterForm = document.querySelector(".filters");
 filterForm.addEventListener("submit", (e) => {
@@ -108,11 +108,11 @@ function sortData(data) {
     });
 
     return sorted;
-}
+};
 
 selectSort.addEventListener("change" , () => {
     render();
-})
+});
 
 //체크박스
 const totalCheck = document.querySelector(".total-check");
@@ -129,6 +129,27 @@ tableBody.addEventListener("change", () => {
     const checkedBox = document.querySelectorAll(".each-check:checked");
 
     totalCheck.checked = (eachCheck.length > 0 && eachCheck.length === checkedBox.length);
+});
+
+//선택삭제
+const deleteBtn = document.querySelector(".delete-btn");
+deleteBtn.addEventListener("click", () => {
+    const checkedBox = document.querySelectorAll(".each-check:checked");
+
+    if (checkedBox.length === 0) {
+        alert("선택한 항목이 없습니다.");
+        return;
+    };
+
+    const checkedId = [...checkedBox].map((check) => Number(check.dataset.id));
+
+    const data = getExpense();
+    const newData = data.filter((item) => {
+        return !checkedId.includes(item.id);
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+    render();
 });
 
 function render() {
