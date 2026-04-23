@@ -139,11 +139,11 @@ main {
 }
 
 .income {
-    color: #2563eb;
+    color: var(--color-blue);
     font-weight: 700;
 }
 
 .expense {
-    color: #dc2626;
+    color: var(--color-red);
     font-weight: 700;
 }
