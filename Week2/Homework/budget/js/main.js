@@ -139,7 +139,7 @@ deleteBtn.addEventListener("click", () => {
     if (checkedBox.length === 0) {
         alert("선택한 항목이 없습니다.");
         return;
-    };
+    }
 
     const checkedId = [...checkedBox].map((check) => Number(check.dataset.id));
 
@@ -149,6 +149,63 @@ deleteBtn.addEventListener("click", () => {
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+    render();
+});
+
+//추가
+const addBtn = document.querySelector(".add-btn");
+const addModal = document.getElementById("add-modal");
+addBtn.addEventListener("click", () => {
+    addModal.classList.remove("hidden");
+});
+
+const addCloseBtn = document.getElementById("add-modal-close");
+addCloseBtn.addEventListener("click", () => {
+    addModal.classList.add("hidden");
+});
+
+const addBackdrop = document.querySelector(".modal-backdrop");
+addBackdrop.addEventListener("click", () => {
+    addModal.classList.add("hidden");
+});
+
+const addForm = document.getElementById("add-form");
+addForm.addEventListener("submit" , (e) => {
+    e.preventDefault();
+
+    const addTitle = document.getElementById("add-title").value;
+    const addType = document.getElementById("add-type").value;
+    const addAmount = document.getElementById("add-amount").value;
+    const addDate = document.getElementById("add-date").value;
+    const addCategory = document.getElementById("add-category").value;
+    const addPayment = document.getElementById("add-payment").value;
+
+    if (!addTitle || !addType || !addAmount || !addDate || !addCategory || !addPayment) {
+        alert("모든 항목을 입력해주세요.");
+        return;
+    }
+
+    const data = getExpense();
+
+    let newAmount = Number(addAmount);
+    newAmount = addType === "수입" ? newAmount : -newAmount;
+
+    const newId = data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
+    
+    const addData = {
+        id: newId,
+        title: addTitle,
+        date: addDate,
+        category: addCategory,
+        payment: addPayment,
+        amount: newAmount
+    };
+
+    data.push(addData);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+    addForm.reset();
+    addModal.classList.add("hidden");
     render();
 });
 

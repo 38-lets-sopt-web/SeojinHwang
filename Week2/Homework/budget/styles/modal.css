@@ -14,39 +14,39 @@
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: var(--color-modal-background);
 }
 
 .modal-content-add,
 .modal-content-detail {
     position: relative;
     z-index: 1;
-    width: min(72rem, calc(100% - 4rem));
+    width: min(60rem, calc(100% - 4rem));
     background-color: var(--color-white);
     border-radius: var(--border-radius);
-    padding: 3rem 3.2rem 3.4rem;
+    padding: 2.5rem 2.7rem 2.9rem;
 }
 
 .modal-content-detail {
-    width: min(78rem, calc(100% - 4rem));
+    width: min(70rem, calc(100% - 4rem));
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.4rem;
+    margin-bottom: 2rem;
 }
 
 .modal-header h2 {
-    font-size: 3.2rem;
+    font-size: var(--modal-font-size-lg);
     font-weight: 800;
     color: var(--color-black);
     line-height: 1.2;
 }
 
 .modal-close-btn {
-    font-size: 3.8rem;
+    font-size: var(--modal-font-size-lg);
     font-weight: 300;
     line-height: 1;
     color: var(--color-black);
@@ -70,7 +70,7 @@
 }
 
 .modal-field label {
-    font-size: 2rem;
+    font-size: var(--modal-font-size-sm);
     font-weight: 700;
     color: var(--color-black);
 }
