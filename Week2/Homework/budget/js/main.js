@@ -11,6 +11,7 @@ function getExpense() {
     return data ? JSON.parse(data) : [];
 }
 
+//테이블
 const tableBody = document.getElementById("table-body");
 const totalAmount = document.getElementById("total-amount");
 
@@ -54,6 +55,7 @@ function renderTable(data) {
     totalAmount.className = total > 0 ? "income" : "expense";
 }
 
+//필터
 const titleFilter = document.getElementById("title-filter");
 const typeFilter = document.getElementById("type-filter");
 const categoryFilter = document.getElementById("category-filter");
@@ -93,10 +95,30 @@ document.querySelector(".reset-btn").addEventListener("click", () => {
     renderTable(data);
 });
 
+//정렬
+const selectSort = document.querySelector(".date-sort");
+function sortData(data) {
+    const sorted = [...data];
+
+    sorted.sort((a, b) => {
+        const aDate = new Date(a.date);
+        const bDate = new Date(b.date);
+
+        return selectSort.value === "오름차순" ? aDate - bDate : bDate - aDate;
+    });
+
+    return sorted;
+}
+
+selectSort.addEventListener("change" , () => {
+    render();
+})
+
 function render() {
     const data = getExpense();
     const filteredData = filterData(data);
-    renderTable(filteredData);
+    const sortedData = sortData(filteredData);
+    renderTable(sortedData);
 }
 
 render();
