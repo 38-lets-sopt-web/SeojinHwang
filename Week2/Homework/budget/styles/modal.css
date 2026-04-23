@@ -24,11 +24,11 @@
     width: min(60rem, calc(100% - 4rem));
     background-color: var(--color-white);
     border-radius: var(--border-radius);
-    padding: 2.5rem 2.7rem 2.9rem;
+    padding: 3rem;
 }
 
 .modal-content-detail {
-    width: min(70rem, calc(100% - 4rem));
+    width: min(68rem, calc(100% - 4rem));
 }
 
 .modal-header {
@@ -47,10 +47,10 @@
 
 .modal-close-btn {
     font-size: var(--modal-font-size-lg);
-    font-weight: 300;
-    line-height: 1;
+    font-weight: 500;
     color: var(--color-black);
     cursor: pointer;
+    transform: translate(0.5rem, -1rem);
 }
 
 .modal-form {
@@ -83,7 +83,7 @@
     border: var(--input-border);
     border-radius: var(--border-radius);
     background-color: var(--color-white);
-    font-size: 1.8rem;
+    font-size: var(--modal-font-size-sm);
     color: var(--color-black);
 }
 
@@ -112,18 +112,18 @@
     display: grid;
     grid-template-columns: 14rem 1fr;
     align-items: center;
-    padding: 1.6rem 0 2rem;
+    padding: 2rem;
     border-bottom: var(--table-border);
 }
 
 .detail-row dt {
-    font-size: 2rem;
+    font-size: var(--modal-font-size-sm);
     font-weight: 800;
     color: var(--color-modal-text);
 }
 
 .detail-row dd {
-    font-size: 2rem;
+    font-size: var(--modal-font-size-sm);
     font-weight: 500;
     color: var(--color-black);
 }

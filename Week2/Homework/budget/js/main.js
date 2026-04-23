@@ -40,7 +40,7 @@ function renderTable(data) {
         row += `
         <tr>
             <td><input type="checkbox" class="each-check" data-id="${item.id}"/></td>
-            <td>${item.title}</td>
+            <td class="title-cell" data-id="${item.id}">${item.title}</td>
             <td class="${amountColor}">${formatAmount(item.amount)}</td>
             <td>${item.date}</td>
             <td>${item.category}</td>
@@ -207,6 +207,40 @@ addForm.addEventListener("submit" , (e) => {
     addForm.reset();
     addModal.classList.add("hidden");
     render();
+});
+
+//상세 모달
+const detailTitle = document.getElementById("detail-title");
+const detailAmount = document.getElementById("detail-amount");
+const detailDate = document.getElementById("detail-date");
+const detailCategory = document.getElementById("detail-category");
+const detailPayment = document.getElementById("detail-payment");
+const detailModal = document.getElementById("detail-modal");
+
+tableBody.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("title-cell")) return;
+
+    const id = Number(e.target.dataset.id);
+    const data = getExpense();
+    const detailItem = data.find((item) => item.id === id);
+
+    detailTitle.textContent = detailItem.title;
+    detailAmount.textContent = formatAmount(detailItem.amount);
+    detailDate.textContent = detailItem.date;
+    detailCategory.textContent = detailItem.category;
+    detailPayment.textContent = detailItem.payment;
+
+    detailModal.classList.remove("hidden");
+});
+
+const detailCloseBtn = document.getElementById("detail-modal-close");
+detailCloseBtn.addEventListener("click", () => {
+    detailModal.classList.add("hidden");
+});
+
+const detailBackdrop = detailModal.querySelector(".modal-backdrop");
+detailBackdrop.addEventListener("click", () => {
+    detailModal.classList.add("hidden");
 });
 
 function render() {
