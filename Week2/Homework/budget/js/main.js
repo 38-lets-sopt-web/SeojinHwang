@@ -39,7 +39,7 @@ function renderTable(data) {
         const amountColor = item.amount > 0 ? "income" : "expense";
         row += `
         <tr>
-            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" class="each-check"/></td>
             <td>${item.title}</td>
             <td class="${amountColor}">${formatAmount(item.amount)}</td>
             <td>${item.date}</td>
@@ -113,6 +113,23 @@ function sortData(data) {
 selectSort.addEventListener("change" , () => {
     render();
 })
+
+//체크박스
+const totalCheck = document.querySelector(".total-check");
+totalCheck.addEventListener("change", () => {
+    const eachCheck = document.querySelectorAll(".each-check");
+
+    eachCheck.forEach((checkbox) => {
+        checkbox.checked = totalCheck.checked;
+    });
+});
+
+tableBody.addEventListener("change", () => {
+    const eachCheck = document.querySelectorAll(".each-check");
+    const checkedBox = document.querySelectorAll(".each-check:checked");
+
+    totalCheck.checked = (eachCheck.length > 0 && eachCheck.length === checkedBox.length);
+});
 
 function render() {
     const data = getExpense();
