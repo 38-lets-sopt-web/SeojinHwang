@@ -243,6 +243,12 @@ detailBackdrop.addEventListener("click", () => {
     detailModal.classList.add("hidden");
 });
 
+//헤더 버튼
+const headerBtn = document.querySelector(".header-btn");
+headerBtn.addEventListener("click", () => {
+    location.reload();
+})
+
 function render() {
     const data = getExpense();
     const filteredData = filterData(data);
