@@ -1,0 +1,20 @@
+:root {
+    --color-bg: #fdf5cc;
+    --color-primary: #f5e68d;
+
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --color-good: #b7ddff;
+    --color-good-hover: #82c5ff;
+    --color-bad: #ffb7b7;
+    --color-bad-hover: #ff8282;
+
+    --shadow-card: 0 5px 5px #c8c8c8;
+    --shadow-hover: 0 0 6px #252525;
+
+    --radius-circle: 50%;
+    --radius-sm: 10px;
+    --radius-md: 20px;
+    --radius-lg: 30px;
+}
