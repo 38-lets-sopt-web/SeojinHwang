@@ -71,17 +71,17 @@ const typeFilter = document.getElementById("type-filter");
 const categoryFilter = document.getElementById("category-filter");
 const paymentFilter = document.getElementById("payment-filter");
 
-function filterData(data) {
+function filterData(data, titleValue, typeValue, categoryValue, paymentValue) {
     let filteredData = data.filter((item) => {
-        const titleMatch = item.title.toLowerCase().includes(titleFilter.value);
+        const titleMatch = item.title.toLowerCase().includes(titleValue);
         const typeMatch = 
-            typeFilter.value === "전체" ||
-            (typeFilter.value === "수입" && item.amount > 0) ||
-            (typeFilter.value === "지출" && item.amount < 0);
+            typeValue === "전체" ||
+            (typeValue === "수입" && item.amount > 0) ||
+            (typeValue === "지출" && item.amount < 0);
         const categoryMatch = 
-            (categoryFilter.value === "전체" || categoryFilter.value === item.category);
+            (categoryValue === "전체" || categoryValue === item.category);
         const paymentMatch = 
-            (paymentFilter.value === "전체" || paymentFilter.value === item.payment);
+            (paymentValue === "전체" || paymentValue === item.payment);
 
         return titleMatch && typeMatch && categoryMatch && paymentMatch;
     });
@@ -268,7 +268,13 @@ headerBtn.addEventListener("click", () => {
 
 function render() {
     const data = getExpense();
-    const filteredData = filterData(data);
+    const filteredData = filterData(
+        data,
+        titleFilter.value,
+        typeFilter.value,
+        categoryFilter.value,
+        paymentFilter.value
+    );
     const sortedData = sortData(filteredData);
     renderTable(sortedData);
 }
