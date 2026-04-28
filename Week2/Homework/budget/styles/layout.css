@@ -2,7 +2,7 @@ body {
     background-color: var(--color-background);
 }
 
-header {
+.main-header {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -10,16 +10,16 @@ header {
     padding: 2rem;
 }
 
-header button {
+.main-header button {
     font-size: var(--font-size-md);
 }
 
-header h1 {
+.main-header h1 {
     font-size: var(--font-size-lg);
     color: var(--color-white);
 }
 
-header div {
+.main-header p {
     font-size: var(--font-size-sm);
     color: var(--color-white);
 }

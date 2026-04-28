@@ -8,7 +8,7 @@
         <title>가계부</title>
     </head>
     <body>
-        <header>
+        <header class="main-header">
             <button type="button" class="header-btn" aria-label="페이지 새로고침">💸</button>
             <h1>서진이의 가계부</h1>
             <p>SOPT 38th WEB</p>
@@ -103,16 +103,14 @@
         </main>
 
         <!--내역 추가 모달-->
-        <dialog class="modal hidden" id="add-modal">
-            <div class="modal-backdrop"></div>
-
+        <dialog class="modal" id="add-modal">
             <section class="modal-content-add">
-                <div class="modal-header">
+                <header class="modal-header">
                     <h2>내역 추가</h2>
                     <button type="button" class="modal-close-btn" id="add-modal-close" aria-label="닫기">
                         x
                     </button>
-                </div>
+                </header>
 
                 <form class="modal-form" id="add-form">
                     <div class="modal-field full">
@@ -170,9 +168,7 @@
         </dialog>
 
         <!--세부 내역 모달-->
-        <dialog class="modal hidden" id="detail-modal">
-            <div class="modal-backdrop"></div>
-
+        <dialog class="modal" id="detail-modal">
             <section class="modal-content-detail">
                 <div class="modal-header">
                     <h2>항목 상세</h2>

@@ -160,22 +160,23 @@ deleteBtn.addEventListener("click", () => {
     render();
 });
 
+// 모달 공통 함수
+function modalOpen(modal) {
+    modal.showModal();
+};
+
+function modalClose(modal) {
+    modal.close();
+};
+
 //추가
 const addBtn = document.querySelector(".add-btn");
 const addModal = document.getElementById("add-modal");
 addBtn.addEventListener("click", () => {
-    addModal.classList.remove("hidden");
+    modalOpen(addModal);
 });
 
 const addCloseBtn = document.getElementById("add-modal-close");
-addCloseBtn.addEventListener("click", () => {
-    addModal.classList.add("hidden");
-});
-
-const addBackdrop = addModal.querySelector(".modal-backdrop");
-addBackdrop.addEventListener("click", () => {
-    addModal.classList.add("hidden");
-});
 
 const addForm = document.getElementById("add-form");
 addForm.addEventListener("submit" , (e) => {
@@ -213,7 +214,7 @@ addForm.addEventListener("submit" , (e) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
     addForm.reset();
-    addModal.classList.add("hidden");
+    modalClose(addModal);
     render();
 });
 
@@ -238,17 +239,25 @@ tableBody.addEventListener("click", (e) => {
     detailCategory.textContent = detailItem.category;
     detailPayment.textContent = detailItem.payment;
 
-    detailModal.classList.remove("hidden");
+    modalOpen(detailModal);
 });
 
 const detailCloseBtn = document.getElementById("detail-modal-close");
-detailCloseBtn.addEventListener("click", () => {
-    detailModal.classList.add("hidden");
-});
 
-const detailBackdrop = detailModal.querySelector(".modal-backdrop");
-detailBackdrop.addEventListener("click", () => {
-    detailModal.classList.add("hidden");
+// 모달 닫기
+[
+    {modal: addModal, closeBtn: addCloseBtn},
+    {modal: detailModal, closeBtn: detailCloseBtn}
+].forEach(({modal, closeBtn}) => {
+    closeBtn.addEventListener("click", () => {
+        modalClose(modal);
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal){
+            modalClose(modal);
+        }
+    });
 });
 
 //헤더 버튼

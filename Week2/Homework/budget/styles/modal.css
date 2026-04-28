@@ -1,19 +1,23 @@
-.modal {
+dialog.modal {
     position: fixed;
     inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+dialog.modal[open] {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
-.hidden {
-    display: none;
-}
-
-.modal-backdrop {
-    position: absolute;
-    inset: 0;
+dialog.modal::backdrop {
     background-color: var(--color-modal-background);
 }
 
