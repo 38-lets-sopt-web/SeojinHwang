@@ -28,7 +28,9 @@ function formatAmount(amount) {
     return `${sign}${amount.toLocaleString()}`;
 };
 
+const totalCheck = document.querySelector(".total-check");
 function renderTable(data) {
+    totalCheck.checked = false;
     tableBody.innerHTML = "";
 
         if (data.length === 0) {
@@ -120,7 +122,6 @@ selectSort.addEventListener("change" , () => {
 });
 
 //체크박스
-const totalCheck = document.querySelector(".total-check");
 totalCheck.addEventListener("change", () => {
     const eachCheck = document.querySelectorAll(".each-check");
 
