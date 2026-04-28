@@ -9,9 +9,9 @@
     --color-red: #dc2626;
     --color-modal-background: rgba(0, 0, 0, 0.35);
     
-    --input-border: 0.1rem solid #cfd6df;
-    --table-border: 0.1rem solid #e5e7eb;
-    --table-total-border: 0.2rem solid #d1d5db;
+    --input-border: 1px solid #cfd6df;
+    --table-border: 1px solid #e5e7eb;
+    --table-total-border: 2px solid #d1d5db;
 
     --border-radius: 1.2rem;
     --border-radius-sm: 0.7rem;

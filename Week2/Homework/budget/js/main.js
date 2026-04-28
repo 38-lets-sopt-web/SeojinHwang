@@ -70,7 +70,7 @@ const categoryFilter = document.getElementById("category-filter");
 const paymentFilter = document.getElementById("payment-filter");
 
 function filterData(data) {
-    let filters = data.filter((item) => {
+    let filteredData = data.filter((item) => {
         const titleMatch = item.title.includes(titleFilter.value);
         const typeMatch = 
             typeFilter.value === "전체" ||
@@ -84,7 +84,7 @@ function filterData(data) {
         return titleMatch && typeMatch && categoryMatch && paymentMatch;
     });
 
-    return filters;
+    return filteredData;
 };
 
 const filterForm = document.querySelector(".filters");
@@ -172,7 +172,7 @@ addCloseBtn.addEventListener("click", () => {
     addModal.classList.add("hidden");
 });
 
-const addBackdrop = document.querySelector(".modal-backdrop");
+const addBackdrop = addModal.querySelector(".modal-backdrop");
 addBackdrop.addEventListener("click", () => {
     addModal.classList.add("hidden");
 });
@@ -198,7 +198,7 @@ addForm.addEventListener("submit" , (e) => {
     let newAmount = Number(addAmount);
     newAmount = addType === "수입" ? newAmount : -newAmount;
 
-    const newId = data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
+    const newId = Date.now();
     
     const addData = {
         id: newId,
