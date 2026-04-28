@@ -91,16 +91,13 @@ const filterForm = document.querySelector(".filters");
 filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const data = getExpense();
-    const filteredData = filterData(data);
-    renderTable(filteredData);
+    render();
 });
 
 document.querySelector(".reset-btn").addEventListener("click", () => {
     filterForm.reset();
 
-    const data = getExpense();
-    renderTable(data);
+    render();
 });
 
 //정렬
