@@ -33,33 +33,60 @@ function renderTable(data) {
     totalCheck.checked = false;
     tableBody.innerHTML = "";
 
-        if (data.length === 0) {
-        tableBody.innerHTML = `
-        <tr>
-            <td colspan="6">내역이 없습니다.</td>
-        </tr>
-        `;
+    if (data.length === 0) {
+        const emptyRow = document.createElement("tr");
+        const emptyCell = document.createElement("td");
+
+        emptyCell.colSpan = 6;
+        emptyCell.textContent = "내역이 없습니다.";
+
+        emptyRow.appendChild(emptyCell);
+        tableBody.appendChild(emptyRow);
+
         totalAmount.textContent = "0";
         return;
     };
 
-    let row = "";
+    const fragment = document.createDocumentFragment();
     data.forEach(item => {
+        const tr = document.createElement("tr");
 
-        const amountColor = item.amount > 0 ? "income" : "expense";
-        row += `
-        <tr>
-            <td><input type="checkbox" class="each-check" data-id="${item.id}"/></td>
-            <td class="title-cell" data-id="${item.id}">${item.title}</td>
-            <td class="${amountColor}">${formatAmount(item.amount)}</td>
-            <td>${item.date}</td>
-            <td>${item.category}</td>
-            <td>${item.payment}</td>        
-        </tr>
-        `;
+        const tdCheck = document.createElement("td");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "each-check";
+        checkbox.dataset.id = item.id;
+        tdCheck.appendChild(checkbox);
+
+        const tdTitle = document.createElement("td");
+        tdTitle.className = "title-cell";
+        tdTitle.dataset.id = item.id;
+        tdTitle.textContent = item.title;
+
+        const tdAmount = document.createElement("td");
+        tdAmount.className = item.amount > 0 ? "income" : "expense";
+        tdAmount.textContent = formatAmount(item.amount);
+
+        const tdDate = document.createElement("td");
+        tdDate.textContent = item.date;
+
+        const tdCategory = document.createElement("td");
+        tdCategory.textContent = item.category;
+
+        const tdPayment = document.createElement("td");
+        tdPayment.textContent = item.payment;
+
+        tr.appendChild(tdCheck);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdAmount);
+        tr.appendChild(tdDate);
+        tr.appendChild(tdCategory);
+        tr.appendChild(tdPayment);
+
+        fragment.appendChild(tr);
     });
 
-    tableBody.innerHTML = row;
+    tableBody.appendChild(fragment);
     const total = data.reduce((sum, item) => sum + item.amount, 0);
     totalAmount.textContent = formatAmount(total);
     totalAmount.className = total > 0 ? "income" : "expense";
