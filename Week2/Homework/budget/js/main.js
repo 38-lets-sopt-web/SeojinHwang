@@ -8,7 +8,15 @@ if (!localStorage.getItem(STORAGE_KEY)) {
 
 function getExpense() {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+
+    try {
+        const parsed = JSON.parse(data);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn("저장된 데이터 파싱 실패:", error);
+        return [];
+    }
 };
 
 //테이블
