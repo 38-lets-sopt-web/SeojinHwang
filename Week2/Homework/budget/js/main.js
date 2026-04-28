@@ -71,7 +71,7 @@ const paymentFilter = document.getElementById("payment-filter");
 
 function filterData(data) {
     let filteredData = data.filter((item) => {
-        const titleMatch = item.title.includes(titleFilter.value);
+        const titleMatch = item.title.toLowerCase().includes(titleFilter.value);
         const typeMatch = 
             typeFilter.value === "전체" ||
             (typeFilter.value === "수입" && item.amount > 0) ||
@@ -229,6 +229,8 @@ tableBody.addEventListener("click", (e) => {
     const id = Number(e.target.dataset.id);
     const data = getExpense();
     const detailItem = data.find((item) => item.id === id);
+
+    if (!detailItem) return;
 
     detailTitle.textContent = detailItem.title;
     detailAmount.textContent = formatAmount(detailItem.amount);
