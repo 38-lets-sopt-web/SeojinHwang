@@ -192,6 +192,11 @@ addForm.addEventListener("submit" , (e) => {
         return;
     }
 
+    if (addAmount.includes("-")) {
+        alert("금액은 숫자만 입력해주세요.");
+        return;
+    }
+
     const data = getExpense();
 
     let newAmount = Number(addAmount);
