@@ -3,7 +3,10 @@ const theme = {
         text: '#2c3f2b',
         background: '#e8f7df',
         body: '#d5f6c0',
-        primary: '#78e251'
+        primary: '#78e251',
+        success: '#59c372',
+        fail: "#c35959",
+        gamepad: '#eff7eb'
     },
     font: {
         xl: '5rem',

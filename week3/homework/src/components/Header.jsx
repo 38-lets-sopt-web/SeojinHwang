@@ -27,7 +27,7 @@ const HeaderGroup = styled.header`
     gap: 0.8rem;
     background-color: ${({theme}) => theme.color.body};
     width: 100%;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 1.5rem;
 `;
 
@@ -40,7 +40,7 @@ const Title = styled.h1`
 const HeaderButton = styled.button`
     border: 1.3px solid ${({theme}) => theme.color.primary};
     border-radius: 2rem;
-    padding: 0.5rem 1.3rem;
+    padding: 0.6rem 1.5rem;
     background-color: ${({theme}) => theme.color.body};
     color: ${({theme}) => theme.color.primary};
     font-size: ${({theme}) => theme.font.sm};

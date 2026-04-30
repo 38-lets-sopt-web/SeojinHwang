@@ -24,5 +24,7 @@ const Page = styled.body`
 `;
 
 const GameLayout = styled.section `
-
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
 `;
