@@ -66,7 +66,7 @@ const StartButton = styled.button`
     padding: 0.5rem 1.5rem;
     background-color: ${({theme}) => theme.color.success};
     color: ${({theme}) => theme.color.gamepad};
-    font-size: ${({theme}) => theme.font.sm};
+    font-size: ${({theme}) => theme.font.xs};
     font-weight: 500;
 `;
 
@@ -75,7 +75,7 @@ const StopButton = styled.button`
     padding: 0.5rem 1.5rem;
     background-color: ${({theme}) => theme.color.fail};
     color: ${({theme}) => theme.color.gamepad};
-    font-size: ${({theme}) => theme.font.sm};
+    font-size: ${({theme}) => theme.font.xs};
     font-weight: 500;
 `;
 

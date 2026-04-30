@@ -52,7 +52,7 @@ const StatusBox = styled.div`
     background-color: ${({theme}) => theme.color.body};
 `;
 
-const TimeHeader = styled.h3`
+const TimeHeader = styled.h2`
     color: ${({theme}) => theme.color.text};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
@@ -63,7 +63,7 @@ const RestTime = styled.p`
     font-size: ${({theme}) => theme.font.xl};
 `;
 
-const TotalHeader = styled.h3`
+const TotalHeader = styled.h2`
     color: ${({theme}) => theme.color.text};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
@@ -79,14 +79,14 @@ const ResultSection = styled.section`
     gap: 1.5rem;
 `;
 
-const SuccessHeader = styled.h3`
+const SuccessHeader = styled.h2`
     color: ${({theme}) => theme.color.success};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
 
 `;
 
-const FailHeader = styled.h3`
+const FailHeader = styled.h2`
     color: ${({theme}) => theme.color.fail};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
@@ -98,7 +98,7 @@ const Count = styled.p`
     font-size: ${({theme}) => theme.font.xl};
 `;
 
-const NoticeHeader = styled.h3`
+const NoticeHeader = styled.h2`
     color: ${({theme}) => theme.color.text};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
