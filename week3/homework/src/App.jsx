@@ -3,11 +3,36 @@ import styled from "@emotion/styled";
 import { Header } from "./components/Header.jsx";
 import { GameStatus } from "./components/GameStatus.jsx";
 import { GameBoard } from "./components/GameBoard.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RankingBoard } from "./components/RankingBoard.jsx";
 
 export function App() {
   const [currentTab, setCurrentTab] = useState("game");
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const LvInfo = {
+    1: {time: 15, size: 2},
+    2: {time: 20, size: 3},
+    3: {time: 30, size: 4}
+  };
+  const [currentLv, setCurrentLv] = useState(1); 
+  const [timeLeft, setTimeLeft] = useState(LvInfo[currentLv].time);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const Timer = setTimeout(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 0.1) {
+          setIsPlaying(false);
+          return 0;
+        }
+
+        return (prev - 0.1).toFixed(1);
+      })
+    }, 100);
+
+    return () => clearTimeout(Timer);
+  }, [isPlaying, timeLeft]);
 
   return (
     <Page>
@@ -15,8 +40,15 @@ export function App() {
 
       {
         currentTab === "game" && <GameLayout>
-                                  <GameStatus />
-                                  <GameBoard />
+                                  <GameStatus timeLeft={timeLeft} />
+                                  <GameBoard
+                                  isPlaying={isPlaying}
+                                  setIsPlaying={setIsPlaying}
+                                  setTimeLeft={setTimeLeft}
+                                  currentLv={currentLv}
+                                  setCurrentLv={setCurrentLv}
+                                  LvInfo={LvInfo}
+                                  />
                                 </GameLayout>
       }
 

@@ -1,32 +1,77 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import keroppi from "./image/keroppi.png";
+import { useState, useEffect } from "react";
 
-export function GameBoard() {
+export function GameBoard({
+    isPlaying,
+    setIsPlaying,
+    setTimeLeft,
+    currentLv,
+    setCurrentLv,
+    LvInfo
+}) {
+    const cardSize = LvInfo[currentLv].size;
+    const cardCount = cardSize * cardSize;
+    const cards = Array.from({ length: cardCount }, (v, i) => ({ id: i }));
+
+    const [activeCard, setActiveCard] = useState(null);
+
+    useEffect(() => {
+        if (!isPlaying) return;
+
+        const Random = setInterval(() => {
+            const randomId = Math.floor(Math.random() * cardCount);
+            setActiveCard(randomId);
+        }, 1000);
+
+        return () => clearInterval(Random);
+    }, [isPlaying, cardCount, setActiveCard])
+
     return (
         <MainBoard>
             <BoardHeader>
-                <LevelSelect>
-                    <option>Level 1</option>
-                    <option>Level 2</option>
-                    <option>Level 3</option>
+                <LevelSelect
+                onChange={(e) => {
+                    setCurrentLv(e.target.value);
+                    setTimeLeft(LvInfo[e.target.value].time)
+                }}
+                >
+                    <option value={1}>Level 1</option>
+                    <option value={2}>Level 2</option>
+                    <option value={3}>Level 3</option>
                 </LevelSelect>
                 
                 <ButtonGroup>
                     <StartButton
                     type="button"
+                    onClick={() => setIsPlaying(true)}
                     >
                         시작
                     </StartButton>
                     <StopButton
                     type="button"
+                    onClick={() => {
+                        setTimeLeft(LvInfo[currentLv].time);
+                        setIsPlaying(false);
+                    }}
                     >
                         중단
                     </StopButton>
                 </ButtonGroup>
             </BoardHeader>
 
-            <GamePad>
-                <Card></Card>
+            <GamePad size={cardSize}>
+                {cards.map((card) => (
+                    <Card key={card.id} size={cardSize}>
+                        {isPlaying && card.id === activeCard &&(
+                            <Images 
+                            src={keroppi}
+                            >
+                            </Images>
+                        )}
+                    </Card>
+                ))}
             </GamePad>
         </MainBoard>
     );
@@ -80,9 +125,12 @@ const StopButton = styled.button`
 `;
 
 const GamePad = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(${({size}) => size}, max-content);
+    grid-template-rows: repeat(${({size}) => size}, max-content);
+    gap: 1rem;
+    place-items: center;
+    place-content: center;
     width: 70rem;
     height: 53rem;
     border-radius: 1rem;
@@ -91,8 +139,24 @@ const GamePad = styled.div`
 `;
 
 const Card = styled.div`
-    width: 10rem;
-    height: 10rem;
+    width: ${({size}) => {
+        if (size === 2) return "25rem";
+        else if (size === 3) return "16rem";
+        else return "12rem";
+    }};
+    height: ${({size}) => {
+        if (size === 2) return "25rem";
+        else if (size === 3) return "16rem";
+        else return "12rem";
+    }};
     background-color: ${({theme}) => theme.color.primary};
     border-radius: 50%;
+`;
+
+const Images = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    cursor: pointer;
 `;

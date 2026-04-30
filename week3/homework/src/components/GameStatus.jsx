@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 
-export function GameStatus() {
+export function GameStatus({timeLeft}) {
     return (
         <StatusSection>
             <StatusBox>
                 <TimeHeader>남은 시간</TimeHeader>
-                <RestTime>20.0</RestTime>
+                <RestTime>{Number(timeLeft).toFixed(1)}</RestTime>
             </StatusBox>
 
             <StatusBox>

@@ -62,7 +62,7 @@ const ResetButton = styled.button`
     padding: 0.5rem 1.5rem;
     background-color: ${({theme}) => theme.color.fail};
     color: ${({theme}) => theme.color.gamepad};
-    font-size: ${({theme}) => theme.font.md};
+    font-size: ${({theme}) => theme.font.sm};
     font-weight: 500;
 `;
 
