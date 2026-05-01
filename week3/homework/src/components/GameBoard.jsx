@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import keroppi from "./image/keroppi.png";
+import keroppi from "./image/keroppi.jpg";
+import hit from "./image/hit.JPG";
+import bomb from "./image/bomb.jpg";
 import { useState, useEffect } from "react";
 
 export function GameBoard({
@@ -16,26 +18,47 @@ export function GameBoard({
     const cards = Array.from({ length: cardCount }, (v, i) => ({ id: i }));
 
     const [activeCard, setActiveCard] = useState(null);
+    const [hitCard, setHitCard] = useState(null);
+    const [activeType, setActiveType] = useState(null);
 
     useEffect(() => {
         if (!isPlaying) return;
 
         const Random = setInterval(() => {
             const randomId = Math.floor(Math.random() * cardCount);
+            const randomCard = Math.random() < 0.75 ? "keroppi" : "bomb";
             setActiveCard(randomId);
+            setActiveType(randomCard);
         }, 1000);
 
         return () => clearInterval(Random);
-    }, [isPlaying, cardCount, setActiveCard])
+    }, [isPlaying, cardCount, setActiveCard]);
+
+const CardClick = (cardId) => {
+    console.log("clicked", cardId, activeCard, activeType);
+
+    if (cardId !== activeCard) return;
+
+    if (activeType === "keroppi") {
+        console.log("hit 실행됨");
+        setHitCard(cardId);
+
+        setTimeout(() => {
+            setHitCard(null);
+        }, 700);
+
+        return;
+    }
+};
 
     return (
         <MainBoard>
             <BoardHeader>
                 <LevelSelect
-                onChange={(e) => {
-                    setCurrentLv(e.target.value);
-                    setTimeLeft(LvInfo[e.target.value].time)
-                }}
+                    onChange={(e) => {
+                        setCurrentLv(e.target.value);
+                        setTimeLeft(LvInfo[e.target.value].time);
+                    }}
                 >
                     <option value={1}>Level 1</option>
                     <option value={2}>Level 2</option>
@@ -44,17 +67,18 @@ export function GameBoard({
                 
                 <ButtonGroup>
                     <StartButton
-                    type="button"
-                    onClick={() => setIsPlaying(true)}
+                        type="button"
+                        onClick={() => setIsPlaying(true)}
                     >
                         시작
                     </StartButton>
                     <StopButton
-                    type="button"
-                    onClick={() => {
-                        setTimeLeft(LvInfo[currentLv].time);
-                        setIsPlaying(false);
-                    }}
+                        type="button"
+                        onClick={() => {
+                            setTimeLeft(LvInfo[currentLv].time);
+                            setIsPlaying(false);
+                            setActiveCard(null);
+                        }}
                     >
                         중단
                     </StopButton>
@@ -63,13 +87,29 @@ export function GameBoard({
 
             <GamePad size={cardSize}>
                 {cards.map((card) => (
-                    <Card key={card.id} size={cardSize}>
-                        {isPlaying && card.id === activeCard &&(
+                    <Card 
+                        key={card.id}
+                        size={cardSize}
+                        onClick = {() => CardClick(card.id)}
+                    >
+                        {isPlaying && card.id === hitCard && (
                             <Images 
-                            src={keroppi}
-                            >
-                            </Images>
+                                src={hit}
+                            />
                         )}
+                        {isPlaying && card.id === activeCard
+                        && card.id !== hitCard && activeType === "keroppi"
+                        && (
+                            <Images 
+                                src={keroppi}
+                            />
+                        )}
+                        {isPlaying && card.id === activeCard && activeType === "bomb" && (
+                            <Images
+                                src={bomb}
+                            />
+                        )}
+                        
                     </Card>
                 ))}
             </GamePad>
@@ -151,12 +191,12 @@ const Card = styled.div`
     }};
     background-color: ${({theme}) => theme.color.primary};
     border-radius: 50%;
+    cursor: pointer;
 `;
 
 const Images = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 50%;
-    cursor: pointer;
 `;

@@ -60,7 +60,7 @@ export function App() {
   );
 }
 
-const Page = styled.body`
+const Page = styled.main`
   padding: 2rem 5rem;
   background-color: ${({theme}) => theme.color.background};
 `;

@@ -7,7 +7,7 @@ export function RankingBoard() {
             <RankingHeader>
                 <RankTitle>랭킹 보드</RankTitle>
                 <ResetButton
-                type="button"
+                    type="button"
                 >
                     기록 초기화
                 </ResetButton>

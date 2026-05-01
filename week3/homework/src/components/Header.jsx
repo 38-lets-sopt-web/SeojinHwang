@@ -7,17 +7,17 @@ export function Header ({currentTab, setCurrentTab}) {
             <Title>두더지 게임</Title>
 
             <HeaderButton
-            type="button"
-            active={currentTab === "game"}
-            onClick={() => setCurrentTab("game")}
+                type="button"
+                active={currentTab === "game"}
+                onClick={() => setCurrentTab("game")}
             >
                 게임
             </HeaderButton>
 
             <HeaderButton
-            type="button"
-            active={currentTab === "ranking"}
-            onClick={() => setCurrentTab("ranking")}
+                type="button"
+                active={currentTab === "ranking"}
+                onClick={() => setCurrentTab("ranking")}
             >
                 랭킹
             </HeaderButton>
