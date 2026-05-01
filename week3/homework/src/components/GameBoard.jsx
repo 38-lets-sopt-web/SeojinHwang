@@ -11,7 +11,11 @@ export function GameBoard({
     setTimeLeft,
     currentLv,
     setCurrentLv,
-    LvInfo
+    LvInfo,
+    setScore,
+    setSuccessScore,
+    setFailScore,
+    setMessage
 }) {
     const cardSize = LvInfo[currentLv].size;
     const cardCount = cardSize * cardSize;
@@ -35,18 +39,31 @@ export function GameBoard({
     }, [isPlaying, cardCount, setActiveCard]);
 
 const CardClick = (cardId) => {
-    console.log("clicked", cardId, activeCard, activeType);
-
     if (cardId !== activeCard) return;
 
     if (activeType === "keroppi") {
-        console.log("hit 실행됨");
+        setScore((prev) => prev + 1);
+        setSuccessScore((prev) => prev + 1);
+        setMessage("두더지를 잡았다!!!");
         setHitCard(cardId);
 
         setTimeout(() => {
             setHitCard(null);
+            setMessage(null);
         }, 700);
 
+        return;
+    }
+
+    if (activeType === "bomb") {
+        setScore((prev) => prev - 1);
+        setFailScore((prev) => prev + 1);
+        setMessage("땡!!!");
+        setActiveCard(null);
+
+        setTimeout(() => {
+            setMessage(null);
+        }, 700);
         return;
     }
 };
@@ -68,7 +85,9 @@ const CardClick = (cardId) => {
                 <ButtonGroup>
                     <StartButton
                         type="button"
-                        onClick={() => setIsPlaying(true)}
+                        onClick={() => {
+                            setIsPlaying(true);
+                        }}
                     >
                         시작
                     </StartButton>
@@ -78,6 +97,9 @@ const CardClick = (cardId) => {
                             setTimeLeft(LvInfo[currentLv].time);
                             setIsPlaying(false);
                             setActiveCard(null);
+                            setScore(0);
+                            setSuccessScore(0);
+                            setFailScore(0);
                         }}
                     >
                         중단
@@ -104,7 +126,9 @@ const CardClick = (cardId) => {
                                 src={keroppi}
                             />
                         )}
-                        {isPlaying && card.id === activeCard && activeType === "bomb" && (
+                        {isPlaying && card.id === activeCard
+                        && card.id !== hitCard && activeType === "bomb"
+                        && (
                             <Images
                                 src={bomb}
                             />

@@ -6,7 +6,8 @@ const theme = {
         primary: '#94f072',
         success: '#59c372',
         fail: "#c35959",
-        gamepad: '#eff7eb'
+        gamepad: '#eff7eb',
+        backdrop: 'rgba(0, 0, 0, 0.12)'
     },
     font: {
         xl: '5rem',

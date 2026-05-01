@@ -5,6 +5,7 @@ import { GameStatus } from "./components/GameStatus.jsx";
 import { GameBoard } from "./components/GameBoard.jsx";
 import { useState, useEffect } from "react";
 import { RankingBoard } from "./components/RankingBoard.jsx";
+import { ResultModal } from "./components/ResultModal.jsx";
 
 export function App() {
   const [currentTab, setCurrentTab] = useState("game");
@@ -24,6 +25,7 @@ export function App() {
       setTimeLeft((prev) => {
         if (prev <= 0.1) {
           setIsPlaying(false);
+          setIsOpen(true);
           return 0;
         }
 
@@ -32,7 +34,22 @@ export function App() {
     }, 100);
 
     return () => clearTimeout(Timer);
-  }, [isPlaying, timeLeft]);
+  }, [isPlaying, timeLeft, setTimeLeft]);
+
+  const [message, setMessage] = useState(null);
+  const [score, setScore] = useState(0);
+  const [successScore, setSuccessScore] = useState(0);
+  const [failScore, setFailScore] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const resetGame = () => {
+    setTimeLeft(LvInfo[currentLv].time);
+    setScore(0);
+    setSuccessScore(0);
+    setFailScore(0);
+    setMessage(null);
+    setIsPlaying(false);
+  }
 
   return (
     <Page>
@@ -40,7 +57,13 @@ export function App() {
 
       {
         currentTab === "game" && <GameLayout>
-                                  <GameStatus timeLeft={timeLeft} />
+                                  <GameStatus 
+                                  timeLeft={timeLeft}
+                                  score={score}
+                                  successScore={successScore}
+                                  failScore={failScore}
+                                  message={message}
+                                  />
                                   <GameBoard
                                   isPlaying={isPlaying}
                                   setIsPlaying={setIsPlaying}
@@ -48,6 +71,17 @@ export function App() {
                                   currentLv={currentLv}
                                   setCurrentLv={setCurrentLv}
                                   LvInfo={LvInfo}
+                                  setScore={setScore}
+                                  setSuccessScore={setSuccessScore}
+                                  setFailScore={setFailScore}
+                                  setMessage={setMessage}
+                                  />
+                                  <ResultModal
+                                  score={score}
+                                  currentLv={currentLv}
+                                  isOpen={isOpen}
+                                  setIsOpen={setIsOpen}
+                                  resetGame={resetGame}
                                   />
                                 </GameLayout>
       }
@@ -61,6 +95,7 @@ export function App() {
 }
 
 const Page = styled.main`
+  min-height: 100vh;
   padding: 2rem 5rem;
   background-color: ${({theme}) => theme.color.background};
 `;

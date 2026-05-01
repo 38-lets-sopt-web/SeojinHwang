@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 
-export function GameStatus({timeLeft}) {
+export function GameStatus({timeLeft, score, successScore, failScore, message}) {
     return (
         <StatusSection>
             <StatusBox>
@@ -11,23 +11,24 @@ export function GameStatus({timeLeft}) {
 
             <StatusBox>
                 <TotalHeader>총 점수</TotalHeader>
-                <TotalScore>0</TotalScore>
+                <TotalScore>{score}</TotalScore>
             </StatusBox>
 
             <ResultSection>
                 <StatusBox>
                     <SuccessHeader>성공</SuccessHeader>
-                    <Count>0</Count>
+                    <Count>{successScore}</Count>
                 </StatusBox>
 
                 <StatusBox>
                     <FailHeader>실패</FailHeader>
-                    <Count>0</Count>
+                    <Count>{failScore}</Count>
                 </StatusBox>
             </ResultSection>
 
             <StatusBox>
                 <NoticeHeader>안내 메시지</NoticeHeader>
+                <NoticeMessage>{message}</NoticeMessage>
             </StatusBox>
         </StatusSection>
     );
@@ -102,4 +103,14 @@ const NoticeHeader = styled.h2`
     color: ${({theme}) => theme.color.text};
     font-size: ${({theme}) => theme.font.md};
     font-weight: 500;
+    position: fixed;
+    transform: translateY(-2rem);
+`;
+
+const NoticeMessage = styled.p`
+    color: ${({theme}) => theme.color.text};
+    font-size: ${({theme}) => theme.font.md};
+    font-weight: 500;
+    position: fixed;
+    transform: translateY(1rem);
 `;
