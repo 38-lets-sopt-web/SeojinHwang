@@ -72,6 +72,7 @@ const CardClick = (cardId) => {
         <MainBoard>
             <BoardHeader>
                 <LevelSelect
+                    disabled={isPlaying}
                     onChange={(e) => {
                         setCurrentLv(e.target.value);
                         setTimeLeft(LvInfo[e.target.value].time);

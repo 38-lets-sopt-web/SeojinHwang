@@ -29,7 +29,12 @@ export function ResultModal({score, currentLv, isOpen, setIsOpen, resetGame}) {
     return createPortal(
         <ModalBackdrop>
             <ModalContent>
-                <h2>Level {currentLv} 게임 종료!</h2>
+                {score > 0 && (
+                    <h2>Level {currentLv} 게임 종료!</h2>                    
+                )}
+                {score <= 0 && (
+                    <h2>클리어 실패</h2>
+                )}
                 <h3>최종 점수: {score}점</h3>
                 <p>{count}초 후 게임이 리셋됩니다...</p>
             </ModalContent>

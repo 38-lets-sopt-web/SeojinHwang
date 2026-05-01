@@ -1,36 +1,60 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { useState } from "react";
+import { clearRanking, getRanking } from "../storage";
 
 export function RankingBoard() {
+    const [rankings, setRankings] = useState(() => getRanking());
+    const sortedRankings = [...rankings].sort((a, b) => {
+        if (b.level !== a.level) return b.level - a.level;
+        return b.score - a.score;
+    });
+
+    const clearBtn = () => {
+        const cleared = clearRanking();
+        if (cleared) setRankings([]);
+    }
+
     return (
         <RankingSection>
             <RankingHeader>
                 <RankTitle>랭킹 보드</RankTitle>
                 <ResetButton
                     type="button"
+                    onClick={clearBtn}
                 >
                     기록 초기화
                 </ResetButton>
             </RankingHeader>
 
             <RankingTable>
-                <thead>
-                    <tr>
-                        <th>순위</th>
-                        <th>레벨</th>
-                        <th>점수</th>
-                        <th>기록 시각</th>
-                    </tr>
-                </thead>
+                {sortedRankings.length > 0 ? (
+                    <>
+                        <thead>
+                            <tr>
+                                <th>순위</th>
+                                <th>레벨</th>
+                                <th>점수</th>
+                                <th>기록 시각</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Level 1</td>
-                        <td>20점</td>
-                        <td>2026.4.30. 오후 6:00:00</td>
-                    </tr>
-                </tbody>
+                        <tbody>
+                            {sortedRankings.map((rank, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>Level {rank.level}</td>
+                                    <td>{rank.score}점</td>
+                                    <td>{rank.time}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </>
+                )
+                :(
+                    <p>아직 기록이 없습니다. 게임을 시작해보세요!</p>
+                )}
+                
             </RankingTable>
         </RankingSection>
     );
@@ -84,5 +108,11 @@ const RankingTable = styled.table`
         border-bottom: 1px solid ${({theme}) => theme.color.gamepad};
         font-size: ${({theme}) => theme.font.xs};
         color: ${({theme}) => theme.color.text};
+    }
+
+    p {
+        font-size: ${({theme}) => theme.font.xs};
+        color: ${({theme}) => theme.color.backdrop};
+        margin: 3rem;
     }
 `;

@@ -7,7 +7,7 @@ const theme = {
         success: '#59c372',
         fail: "#c35959",
         gamepad: '#eff7eb',
-        backdrop: 'rgba(0, 0, 0, 0.12)'
+        backdrop: 'rgba(0, 0, 0, 0.15)'
     },
     font: {
         xl: '5rem',

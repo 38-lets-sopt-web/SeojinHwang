@@ -6,6 +6,7 @@ import { GameBoard } from "./components/GameBoard.jsx";
 import { useState, useEffect } from "react";
 import { RankingBoard } from "./components/RankingBoard.jsx";
 import { ResultModal } from "./components/ResultModal.jsx";
+import { saveRanking } from "./storage.js";
 
 export function App() {
   const [currentTab, setCurrentTab] = useState("game");
@@ -18,6 +19,11 @@ export function App() {
   };
   const [currentLv, setCurrentLv] = useState(1); 
   const [timeLeft, setTimeLeft] = useState(LvInfo[currentLv].time);
+  const [message, setMessage] = useState(null);
+  const [score, setScore] = useState(0);
+  const [successScore, setSuccessScore] = useState(0);
+  const [failScore, setFailScore] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -26,6 +32,16 @@ export function App() {
         if (prev <= 0.1) {
           setIsPlaying(false);
           setIsOpen(true);
+
+          if (score > 0) {
+            const newRecord = {
+              level: currentLv,
+              score: score,
+              time: new Date().toLocaleString("ko-KR")
+          };
+
+          saveRanking(newRecord);
+          }
           return 0;
         }
 
@@ -34,13 +50,7 @@ export function App() {
     }, 100);
 
     return () => clearTimeout(Timer);
-  }, [isPlaying, timeLeft, setTimeLeft]);
-
-  const [message, setMessage] = useState(null);
-  const [score, setScore] = useState(0);
-  const [successScore, setSuccessScore] = useState(0);
-  const [failScore, setFailScore] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  }, [isPlaying, timeLeft, setTimeLeft, currentLv, score]);
 
   const resetGame = () => {
     setTimeLeft(LvInfo[currentLv].time);
