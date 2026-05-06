@@ -1,0 +1,24 @@
+:root {
+    --color-background: #dadada;
+    --color-header: #121c25;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-table: #eef2f6;
+    --color-modal-text: #6f7f96;
+    --color-blue: #2563eb;
+    --color-red: #dc2626;
+    --color-modal-background: rgba(0, 0, 0, 0.35);
+    
+    --input-border: 1px solid #cfd6df;
+    --table-border: 1px solid #e5e7eb;
+    --table-total-border: 2px solid #d1d5db;
+
+    --border-radius: 1.2rem;
+    --border-radius-sm: 0.7rem;
+
+    --font-size-sm: 1.4rem;
+    --font-size-md: 1.6rem;
+    --font-size-lg: 2rem;
+    --modal-font-size-sm: 2rem;
+    --modal-font-size-lg: 2.5rem;
+}
