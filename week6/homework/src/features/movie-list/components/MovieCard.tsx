@@ -27,7 +27,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       <div className="flex flex-col gap-1 p-3 overflow-hidden">
         <h2 className="text-base font-semibold truncate">{movie.title}</h2>
         <span className="text-sm">{movie.release_date}</span>
-        <p className="text-sm truncate">{movie.overview}</p>
+        <p className="text-sm truncate">{movie.overview || "줄거리가 없습니다."}</p>
       </div>
     </article>
   );
