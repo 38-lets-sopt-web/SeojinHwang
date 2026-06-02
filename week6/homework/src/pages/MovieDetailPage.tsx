@@ -1,5 +1,6 @@
 import DetailArticle from "@/features/detail/components/DetailArticle";
 import DetailSection from "@/features/detail/components/DetailSection";
+import RatingForm from "@/features/detail/components/RatingForm";
 import { useMovieDetail } from "@/features/detail/hooks/useMovieDetail";
 import { useNavigate, useParams } from "react-router";
 
@@ -90,25 +91,7 @@ const MovieDetailPage = () => {
         </DetailSection>
 
         <DetailSection title="별점 남기기" className="w-[40%]">
-          <input 
-            type="number"
-            placeholder="0.5 ~ 10.0"
-            className="mt-1 border border-gray-200 rounded-2xl p-5 text-xl"
-          />
-          <div className="flex gap-3">
-            <button
-              className="bg-gray-900 text-white text-lg rounded-xl px-5 py-3 transition hover:bg-gray-600"
-            >
-              별점 저장
-            </button>
-
-            <button
-              className="border border-gray-200 bg-white text-gray-500 text-lg rounded-xl px-5 py-3 transition hover:bg-gray-200"
-            >
-              별점 삭제하기
-            </button>          
-          </div>
-
+          <RatingForm movieId={movieId} />
         </DetailSection>
       </div>
 
