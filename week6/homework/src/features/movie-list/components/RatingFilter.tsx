@@ -15,7 +15,7 @@ const RatingFilter = ({
 
         onChangeRating(value === "all" ? null : Number(value));
       }}
-      className="rounded-lg border border-gray-300 bg-white text-2xl text-gray-700 px-3 py-2 translate-y-1"
+      className="rounded-xl border border-gray-300 bg-white text-2xl text-gray-700 px-3 py-2 translate-y-1"
     >
       <option value="all">전체 별점</option>
       {Array.from({ length: 10 }, (_, i) => {

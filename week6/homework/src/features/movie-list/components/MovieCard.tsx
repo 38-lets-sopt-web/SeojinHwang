@@ -13,8 +13,8 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 
   return (
     <article
-      className="flex flex-col rounded-lg bg-white overflow-hidden cursor-pointer transition hover:scale-102 hover:shadow-lg"
-      onClick={() => navigate(`/&{movie.id}`)}
+      className="flex flex-col rounded-xl bg-white overflow-hidden cursor-pointer transition hover:scale-102 hover:shadow-lg"
+      onClick={() => navigate(`/${movie.id}`)}
     >
       <img
         src={movie.poster_path
