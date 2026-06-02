@@ -1,66 +1,25 @@
 import DetailArticle from "@/features/detail/components/DetailArticle";
 import DetailSection from "@/features/detail/components/DetailSection";
-import type { MovieDetail } from "@/shared/types/movieDetail";
-import { useNavigate } from "react-router";
-
-const movieDetails: MovieDetail = {
-  "backdrop_path": "/9Z2uDYXqJrlmePznQQJhL6d92Rq.jpg",
-  "budget": 110000000,
-  "genres": [
-    {
-      "id": 10751,
-      "name": "Family"
-    },
-    {
-      "id": 35,
-      "name": "Comedy"
-    },
-    {
-      "id": 12,
-      "name": "Adventure"
-    },
-    {
-      "id": 14,
-      "name": "Fantasy"
-    },
-    {
-      "id": 16,
-      "name": "Animation"
-    }
-    ],
-    "id": 1226863,
-    "original_language": "en",
-    "original_title": "The Super Mario Galaxy Movie",
-    "overview": "Having thwarted Bowser's previous plot to marry Princess Peach, Mario and Luigi now face a fresh threat in Bowser Jr., who is determined to liberate his father from captivity and restore the family legacy. Alongside companions new and old, the brothers travel across the stars to stop the young heir's crusade.",
-    "poster_path": "/eJGWx219ZcEMVQJhAgMiqo8tYY.jpg",
-    "production_countries": [
-        {
-            "iso_3166_1": "JP",
-            "name": "Japan"
-        },
-        {
-            "iso_3166_1": "US",
-            "name": "United States of America"
-        }
-    ],
-    "release_date": "2026-04-01",
-    "revenue": 991800000,
-    "runtime": 98,
-    "spoken_languages": [
-        {
-            "english_name": "English",
-            "iso_639_1": "en",
-            "name": "English"
-        }
-    ],
-    "status": "Released",
-    "title": "The Super Mario Galaxy Movie",
-    "vote_average": 8.109,
-    "vote_count": 2228
-}
+import { useMovieDetail } from "@/features/detail/hooks/useMovieDetail";
+import { useNavigate, useParams } from "react-router";
 
 const MovieDetailPage = () => {
   const navigate = useNavigate();
+  const { movieId } = useParams();
+  const { data: movieDetails, isError, isLoading } = useMovieDetail(movieId);
+
+  if (isLoading) {
+    return <p className="mt-10 text-center text-2xl">영화 정보를 불러오는 중입니다.</p>;
+  }
+
+  if (isError) {
+    return <p className="mt-10 text-center text-2xl">영화 정보를 불러오지 못했습니다.</p>;
+  }
+
+  if (!movieDetails) {
+    return <p className="mt-10 text-center text-2xl">영화 정보가 없습니다.</p>;
+  }
+
   const basicInfoRows = [
     {
       label: "원제",
@@ -84,11 +43,11 @@ const MovieDetailPage = () => {
     },
     {
       label: "예산",
-      value: `US $${movieDetails.budget.toLocaleString()}`,
+      value: `${movieDetails.budget.toLocaleString()}`,
     },
     {
       label: "수익",
-      value: `US $${movieDetails.revenue.toLocaleString()}`,
+      value: `${movieDetails.revenue.toLocaleString()}`,
     },
   ];
 
