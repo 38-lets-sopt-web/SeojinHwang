@@ -1,5 +1,5 @@
-import type { MovieDetail } from "@/shared/types/movie-detail";
-import { BACKDROP_BASE_URL, FALLBACK_URL, IMG_BASE_URL} from "@/shared/types/img-url";
+import type { MovieDetail } from "@/shared/types/movieDetail";
+import { BACKDROP_BASE_URL, FALLBACK_URL, IMG_BASE_URL} from "@/shared/types/imgURL";
 import Chip from "./Chip";
 import InfoCard from "./InfoCard";
 

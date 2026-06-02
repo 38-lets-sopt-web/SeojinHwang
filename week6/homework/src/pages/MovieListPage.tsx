@@ -1,5 +1,5 @@
-import MovieCard from "@/features/movie-list/components/MovieCard";
-import RatingFilter from "@/features/movie-list/components/RatingFilter";
+import MovieCard from "@/features/list/components/MovieCard";
+import RatingFilter from "@/features/list/components/RatingFilter";
 import type { Movie } from "@/shared/types/movie";
 import { useState } from "react";
 

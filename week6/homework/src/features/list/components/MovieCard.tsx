@@ -1,6 +1,6 @@
 import type { Movie } from "@/shared/types/movie";
 import { useNavigate } from "react-router";
-import { IMG_BASE_URL, FALLBACK_URL } from "@/shared/types/img-url";
+import { IMG_BASE_URL, FALLBACK_URL } from "@/shared/types/imgURL";
 
 interface MovieCardProps {
   movie: Movie;

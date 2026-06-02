@@ -1,6 +1,6 @@
-import DetailArticle from "@/features/movie-detail/components/DetailArticle";
-import DetailSection from "@/features/movie-detail/components/DetailSection";
-import type { MovieDetail } from "@/shared/types/movie-detail";
+import DetailArticle from "@/features/detail/components/DetailArticle";
+import DetailSection from "@/features/detail/components/DetailSection";
+import type { MovieDetail } from "@/shared/types/movieDetail";
 import { useNavigate } from "react-router";
 
 const movieDetails: MovieDetail = {
