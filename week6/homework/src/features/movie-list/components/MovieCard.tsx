@@ -1,8 +1,6 @@
 import type { Movie } from "@/shared/types/movie";
 import { useNavigate } from "react-router";
-
-const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
-const FALLBACK_URL = "https://placehold.co/500x750?text=No+Poster";
+import { IMG_BASE_URL, FALLBACK_URL } from "@/shared/types/img-url";
 
 interface MovieCardProps {
   movie: Movie;

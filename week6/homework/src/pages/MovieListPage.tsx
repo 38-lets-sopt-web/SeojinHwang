@@ -82,7 +82,7 @@ const MovieListPage = () => {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col gap-10">
+    <main className="flex flex-col gap-10">
       <header className="flex justify-around pt-10">
         <h1 className="text-5xl font-bold">Movie Explorer</h1>
         <RatingFilter
@@ -96,7 +96,7 @@ const MovieListPage = () => {
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </section>
-    </div>
+    </main>
   )
 }
 

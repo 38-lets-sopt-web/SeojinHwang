@@ -12,8 +12,8 @@ const DetailSection = ({
   className = "",
 }: DetailSectionProps) => {
   return (
-    <section className={`rounded-2xl bg-white p-8 border border-gray-300 ${className}`}>
-      <h2 className="text-2xl font-bold">{title}</h2>
+    <section className={`flex flex-col rounded-3xl bg-white p-10 border border-gray-200 gap-6 ${className}`}>
+      <h2 className="text-3xl font-bold">{title}</h2>
       {children}
     </section>
   );
