@@ -20,9 +20,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
               : FALLBACK_URL
         }
         alt={movie.title}
-        className="w-full object-cover"
+        className="aspect-[2/3] w-full object-cover"
       />
-      <div className="flex flex-col gap-3 p-3 overflow-hidden">
+      <div className="flex flex-col gap-3 p-4 overflow-hidden">
         <h2 className="text-2xl font-semibold truncate">{movie.title}</h2>
         <span className="text-md">{movie.release_date}</span>
         <p className="text-md line-clamp-3">{movie.overview || "줄거리가 없습니다."}</p>
